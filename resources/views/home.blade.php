@@ -14,8 +14,8 @@
                     </div>
                     @endif
 
-
-                    <table class="table table-striped table-bordered">
+                    <a class="btn btn-sucess" href="">Create new</a>
+                    <table dd="table-employees" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <td>Name</td>
@@ -34,7 +34,7 @@
                                 <td>{{ $value->location }}</td>
 
                                 <td>
-                                    <a class="btn btn-small btn-info" href="{{ URL::to('nerds/' . $value->id . '/edit') }}">Edit</a>
+                                    <a class="btn btn-small btn-info" href="{{ URL::to('employees/' . $value->id . '') }}">Edit</a>
 
                                     {{ Form::open(array('url' => 'employees/' . $value->id, 'class' => 'pull-right')) }}
                                         {{ Form::hidden('_method', 'DELETE') }}
@@ -44,18 +44,29 @@
                                 </td>
                             </tr>
                             @endforeach
+
                         </tbody>
                     </table>
-
-
-
-
-
-
+                    <center>
+                    {{ $Employees->links() }}
+                    </center>
 
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <center>
+                @if (Session::has('message'))
+                <div class="alert alert-success">{{ Session::get('message') }}</div>
+                @endif  
+
+            </center>
+        </div>  
+    </div>
+
 </div>
 @endsection
